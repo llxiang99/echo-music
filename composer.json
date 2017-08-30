@@ -1,0 +1,14 @@
+{
+    "name": "lixiang/echo-music",
+    "description": "echo music download and image download",
+    "type": "project",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "LiXiang",
+            "email": "534529940@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
