@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ECHO回声音乐下载 By:Lx</title>
+    <meta name="keywords" content="echo回声,echo回声音乐下载,echo下载,echo音乐,ECHO回声音乐下载,ECHO回声音乐">
+    <meta name="Description" Content="获取echo音乐、高清图片等等">
+    <meta name="Author" Content="李想，llx_99@sina.com，QQ:534529940">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.12.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="icon" href="./images/favicon_echo.ico" type="image/x-icon">
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: '微软雅黑';
+        margin-bottom: 20px;
+    }
+    </style>
+</head>
+
+<body bgcolor="#F8F8FF">
+    <div class="div1">
+        <h2 style="color: orange;text-shadow: 0 0 10px rgba(0,0,0,0.1);">ECHO回声音乐下载</h2>输入音乐ID获取下载地址：
+        <input type="text" id="Mid" placeholder="1318069">
+        <div id="btn">获取</div>&nbsp;&nbsp;<span style="vertical-align: middle; font-size: 14px;"> 例：（http://www.app-echo.com/#/sound/<font color="orange">1318069</font> 数字编号</span>
+        <br>
+        <span id="span" style="color: #9BCD9B;"></span>
+        <div id="img-box">
+            <br> 高清图片右键保存,动图文件名后加.gif，静态图加.jpg（看下图）
+            <br>
+            <br>
+            <img src="" alt="" id="img">&nbsp;<img src="./images/img.png" alt="" id="himg">
+        </div>
+    </div>
+    <div id="bu">
+        <span id="busuanzi_container_site_pv">
+    本站总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;次
+        </span>----
+        <span id="busuanzi_container_site_uv">
+  本站访客数&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;人次
+        </span>&nbsp;&nbsp; 新浪微博:
+        <a href="http://weibo.com/liyzx" target="_black" class="a">@木目心璇</a>
+    </div </body>
+    <script type="text/javascript">
+    $('#btn').click(function() {
+        var Mid = $('#Mid').val() ? $('#Mid').val() : "1318069";
+        $.ajax({
+            type: 'GET',
+            url: "get.php?Mid=" + Mid,
+            dataType: 'json',
+            success: function(data) {
+                if (data == 0) {
+                    $("#span").html("<br><font color='red'>获取失败，请输入正确的编号</font>");
+                } else {
+                    $("#span").html("<br><font color='red'>歌曲名是：</font><a href='./down.php?file=" + data.info.source + "&name=" + data.info.name + "'>" + data.info.name + "</a><br><font color='red'>（点击歌曲名字进行下载）</font>");
+                    $("#img-box").css('display', 'block');
+                    $("#img").attr('src', data.info.pic);
+
+                }
+            }
+        });
+    });
+    </script>
+    <!--     <script type="text/javascript">
+var snow = new Snow({
+	snowmax:25
+});
+</script> -->
+
+</html>
